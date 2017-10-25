@@ -10,7 +10,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.taotao.common.utils.CookieUtils;
+import com.taotao.common.utils.JsonUtils;
 import com.taotao.common.utils.TaotaoResult;
+import com.taotao.pojo.TbUser;
 import com.taotao.sso.service.UserService;
 /**
  * 拦截用户是否登录
@@ -55,6 +57,9 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return false;
 		}
 		// 5.如果取到用户信息。放行。
+		// 把用户信息放入request中
+		TbUser user = (TbUser)taotaoResult.getData();
+		request.setAttribute("user", user);
 		// 返回true：放行，返回false：拦截
 		return true;
 	}
