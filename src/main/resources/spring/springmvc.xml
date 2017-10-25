@@ -12,6 +12,14 @@
 	<!-- 加载属性文件 -->
 	<context:property-placeholder location="classpath:resource/resource.properties"/>
 
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/order/**">
+			<bean class="com.taotao.order.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<!-- 配置注解驱动 -->
 	<mvc:annotation-driven />
 	<!-- 视图解析器 -->
